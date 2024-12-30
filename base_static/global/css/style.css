@@ -2,6 +2,7 @@
     --color-primary: #269fe6;
     --color-primary-hover: #2086c2;
     --color-primary-dark: #13141f;
+    --color-primary-dark-header:#1b1f4b;
     --color-primary-dark-hover: #212336;
     --color-primary-light: #d4ecfa;
     --color-primary-light-hover: #bdd8e7;
@@ -58,7 +59,7 @@ h1,h2,h3,h4,h5,h6{
     padding: var(--spacing-gutter-medium);
 }
 .header-container{
-    background: var(--color-primary);
+    background: var(--color-primary-dark-header);
 }
 .header{
     display: flex;
@@ -75,21 +76,22 @@ h1,h2,h3,h4,h5,h6{
 }
 .header form .logout-button{
     border: none;
-    background: var(--color-error-dark);
+    background-color: var(--color-error-dark);
     cursor: pointer;
     color: var(--color-white);
     font-size: 1.8rem;
     width: 6rem;
     height: 4rem;
     border-radius: 10px;
-    transition: all .5s ease;
+    transition: all .3s ease;
+    position: relative;
 }
 .header form .logout-button:hover{
-    transform: scale(1.1);
+    transform: scale(1.06);
 }
+
 .main .hello-user{
     text-align: center;
     color: var(--color-white);
+    font-size: 2.4rem;
 }
-
-
