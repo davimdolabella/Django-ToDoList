@@ -1,0 +1,17 @@
+
+{% if is_detail_page %}
+{% else %}
+    <div class="todolist-header-container">
+        {% include "todolist/partials/search.html" %}
+    </div>
+    <div class="todolist-container">
+        <div class="todolist container border">
+            <h2>ToDoList</h2>
+            <div class="list-itens">
+                {% for i in range %}
+                    {% include "todolist/partials/list_item.html" %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endif %}

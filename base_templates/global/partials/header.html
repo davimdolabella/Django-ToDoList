@@ -1,0 +1,24 @@
+<header class="header-container">
+    {% if request.user.username %}
+    <div class="header container">
+        <h2>
+            <a href="{% url 'todolist:home' %}" class="logo">
+                <i class="fa-solid fa-clipboard-list logo-icon"></i>
+                <span class="logo-text">ToDoList-Django</span>
+            </a>
+        </h2>
+        <form class="inline-form">
+            {% csrf_token %}
+            <button type="submit" class="logout-button button" title="logout"><i class="fa-solid fa-right-from-bracket"></i></button>
+        </form>
+    {% else %}
+    <div class="header container no-user">
+        <h2>
+            <a href="{% url 'todolist:home' %}" class="logo no-user">
+                <i class="fa-solid fa-clipboard-list logo-icon no-user"></i>
+                <span class="logo-text no-user">ToDoList-Django</span>
+            </a>
+        </h2>
+    {% endif %}
+    </div>
+</header>
