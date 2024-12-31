@@ -198,6 +198,10 @@ h1,h2,h3,h4,h5,h6{
     overflow-y: auto;
     padding-right: 1rem;
 }
+.todolist .list-itens > p{
+    font-size: 2rem;
+    padding-bottom: 30rem;
+}
 .list-itens::-webkit-scrollbar{
     background-color: var(--color-primary-dark);
     width: 1rem;
@@ -207,6 +211,7 @@ h1,h2,h3,h4,h5,h6{
     border: 3px solid var(--color-primary-dark);
     width: 1rem;
 }
+
 .todolist .list-item{
     padding: var(--spacing-gutter-small);
     width: 100%;
@@ -216,6 +221,7 @@ h1,h2,h3,h4,h5,h6{
     justify-content: space-between;
     align-items: center;
 }
+
 .todolist .list-item .list-item-actions{
     display: flex;
     justify-content: center;

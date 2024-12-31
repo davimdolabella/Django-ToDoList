@@ -10,6 +10,8 @@
             <div class="list-itens">
                 {% for i in range %}
                     {% include "todolist/partials/list_item.html" %}
+                {% empty %}
+                    <p>Create a task.</p>
                 {% endfor %}
             </div>
         </div>
