@@ -8,7 +8,7 @@
         <div class="todolist container border">
             <h2>ToDoList</h2>
             <div class="list-itens">
-                {% for i in range %}
+                {% for task in tasks %}
                     {% include "todolist/partials/list_item.html" %}
                 {% empty %}
                     <p>Create a task.</p>
