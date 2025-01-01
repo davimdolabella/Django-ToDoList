@@ -2,8 +2,9 @@ from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.http import Http404
 from django.contrib import messages
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from .forms import LoginForm
+from django.contrib.auth.decorators import login_required
 
 def register_view(request):
     return render(request, 'users/pages/home.html')
@@ -45,5 +46,10 @@ def login_create(request):
     return redirect('users:login')
     
 
-def logout(request):
-    return redirect('users:login')
+@login_required(login_url='users:login', redirect_field_name='next')
+def logout_view(request):
+    if not request.POST:
+        return redirect(reverse('users:login'))
+    logout(request)
+    messages.success(request, 'You are logged out!')
+    return redirect(reverse('users:login'))
