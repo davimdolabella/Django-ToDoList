@@ -169,7 +169,7 @@ h1,h2,h3,h4,h5,h6{
     justify-content: center;
     width: 100%;
 }
-.main .hello-user{
+.main .main_menssage{
     text-align: center;
     color: var(--color-white);
     font-size: 2.4rem;
@@ -194,7 +194,6 @@ h1,h2,h3,h4,h5,h6{
     display: flex;
     flex-direction: column;
     align-items: center;
-
     gap: var(--spacing-gutter-medium);
     overflow-y: auto;
     padding-right: 1rem;
@@ -276,9 +275,114 @@ h1,h2,h3,h4,h5,h6{
 .list-item-text:hover::before{
     width: 100%;
 }
+/*forms*/
+ .form{
+    background-color: var(--color-primary-dark-header);
+    padding: var(--spacing-gutter-large) ;
+    max-width: 75rem;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.form-content {
+    max-width: 64rem;
+    margin: 0 auto;
+    
+  }
+  .form-content label,
+  .form-content .help-text,
+  .errorlist {
+    display: block;
+    margin: 0.5rem 0;
+    font-size: 1.4rem;
+    list-style-type: none;
+    color: var(--color-gray-2);
+  }
+  .errorlist {
+    color: var(--color-error-dark);
+  }
+  .form-content input {
+    width: 100%;
+    padding: 1rem;
+    border-radius: 0.4rem;
+    border: 1px solid var(--color-primary-dark);
+    transition: all .3s ease-in-out;
+    background: var(--search-focus-color);
+  }
+  
+  .form-content-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+    gap: calc(var(--spacing-gutter-medium) / 2) var(--spacing-gutter-medium);
+  }
+  .form-content button {
+    padding: 1rem 2rem;
+    width: 100%;
+    border: none;
+    background: var(--color-primary-dark);
+    color: var(--color-white);
+    font-size: 1.5rem;
+    transition: all .3s ease;
+    cursor: pointer;
+    margin: 0 auto;
+    margin-top: var(--spacing-gutter-medium);
+  }
+  .form-content button:hover{
+    transform: scale(1.01);
+  }
+ /* Messages */
+.messages-container {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: calc(var(--spacing-gutter-medium) / 2);
+    max-width: 64rem;
+    width: 100%;
+  }
+.message {
+    padding: 1rem;
+    border-radius: 4px;
+    border: 1px solid var(--color-dark-text);
+    background: var(--color-gray-2);
+    color: var(--color-dark-text);
+    text-align: center;
+
+  }
+  .message-error {
+    border: 1px solid var(--color-error-dark);
+    background: var(--color-error-light);
+    color: var(--color-error-dark);
+  }
+  .message-success {
+    border: 1px solid var(--color-success-dark);
+    background: var(--color-success-light);
+    color: var(--color-success-dark);
+  }
+  .message-warning {
+    border: 1px solid var(--color-warning-dark);
+    background: var(--color-warning-light);
+    color: var(--color-warning-dark);
+  }
+  .message-alert {
+    border: 1px solid var(--color-alert-dark);
+    background: var(--color-alert-light);
+    color: var(--color-alert-dark);
+  }
+  .message-info {
+    border: 1px solid var(--color-info-dark);
+    background: var(--color-info-light);
+    color: var(--color-info-dark);
+  }
+  .message-debug {
+    border: 1px solid var(--color-debug-dark);
+    background: var(--color-debug-light);
+    color: var(--color-debug-dark);
+  }
 @media screen and (max-width: 600px){
     .main{
         padding: var(--spacing-gutter-medium) 0rem;
+    }
+    .form-container{
+        padding: var(--spacing-gutter-medium);
     }
     .todolist .list-item .list-item-actions{
         gap:.8rem;
@@ -329,7 +433,7 @@ h1,h2,h3,h4,h5,h6{
         gap: .5rem;
         padding: var(--spacing-gutter-medium) 1rem;
     }
-    .main .hello-user{
+    .main .main_menssage{
         font-size: 1.4rem;
     }
     .list-item-text{

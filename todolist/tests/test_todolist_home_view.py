@@ -10,3 +10,5 @@ class HomeTest(TestCase):
         self.assertEqual(self.get_response.status_code, 200)
     def test_home_use_correct_template(self):
         self.assertTemplateUsed(self.get_response, 'todolist/pages/home.html')
+    def test_home_shows_create_task_if_no_task(self):
+        self.assertIn('Create a task', self.get_response.content.decode())
