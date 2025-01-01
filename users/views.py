@@ -51,5 +51,5 @@ def logout_view(request):
     if not request.POST:
         return redirect(reverse('users:login'))
     logout(request)
-    messages.success(request, 'You are logged out!')
+    messages.success(request, 'You are logged out!') 
     return redirect(reverse('users:login'))

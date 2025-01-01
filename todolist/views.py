@@ -1,16 +1,12 @@
 from django.shortcuts import render, redirect
 from .models import Task
+from django.contrib.auth.decorators import login_required
 
+@login_required(login_url='users:login', redirect_field_name='next')
 def home(request):
-    if request.user.is_authenticated:
-        tasks = Task.objects.filter(
+    tasks = Task.objects.filter(
             author=request.user
         ).order_by('-id')
-    else:
-        tasks = None
-        return redirect('users:login')
-    
-    
     return render(request, 'todolist/pages/home.html', {
         'tasks':tasks,
         'title':'a' *20
