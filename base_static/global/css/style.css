@@ -84,6 +84,15 @@ h1,h2,h3,h4,h5,h6{
 .header .logo.no-user{
     font-size: 3rem;
 }
+.house-button{
+    color: var(--color-white);
+    font-size: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--color-success-dark);
+    text-decoration: none;
+}
 .button{
     cursor: pointer;
     font-size: 1.8rem;
@@ -91,6 +100,12 @@ h1,h2,h3,h4,h5,h6{
     height: 4rem;
     border-radius: 10px;
     transition: all .3s ease;
+}
+.header form{
+    display: flex;
+    gap: var(--spacing-gutter-small);
+    align-items: center;
+    justify-content: center;
 }
 .header form .logout-button{
     border: none;

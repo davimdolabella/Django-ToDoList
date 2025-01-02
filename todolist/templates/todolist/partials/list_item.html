@@ -4,7 +4,7 @@
             <a href="#" class="list-item-action-button-link one" title="check-item"><i class="fa-solid fa-check"></i></a>
         </div>
         <div class="list-item-action-button">
-            <a href="#" class="list-item-action-button-link two" title="details"><i class="fa-solid fa-info"></i></a>
+            <a href="#" class="list-item-action-button-link two" title="edit-item"><i class="fa-solid fa-pencil"></i></a>
         </div>
         <div class="list-item-action-button">
             <a href="#" class="list-item-action-button-link three " title="delete-item"><i class="fa-solid fa-trash"></i></a>
@@ -49,7 +49,7 @@
                 <a href="#" class="list-item-action-button-link one" title="check-item"><i class="fa-solid fa-check"></i></a>
             </div>
             <div class="list-item-action-button">
-                <a href="#" class="list-item-action-button-link two" title="details"><i class="fa-solid fa-info"></i></a>
+                <a href="{% url 'todolist:detail' task.id %}" class="list-item-action-button-link two" title="details"><i class="fa-solid fa-info"></i></a>
             </div>
             <div class="list-item-action-button">
                 <a href="#" class="list-item-action-button-link three " title="delete-item"><i class="fa-solid fa-trash"></i></a>
