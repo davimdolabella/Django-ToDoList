@@ -1,5 +1,13 @@
 
 {% if is_detail_page %}
+<div class="todolist-container">
+    <div class="todolist container border detail">
+        <h2>{{task.title}} - Detail</h2>
+        <div class="list-itens detail">
+            {% include "todolist/partials/list_item.html" %}
+        </div>
+    </div>
+</div>
 {% else %}
     <div class="todolist-header-container">
         {% include "todolist/partials/search.html" %}

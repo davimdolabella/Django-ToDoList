@@ -1,8 +1,5 @@
-<div class="list-item border">
-    <div class="list-item-content">
-        <p class="list-item-text">{{ task.title }}</p>
-    </div>
-    <div class="list-item-actions">
+{% if is_detail_page %}
+    <div class="list-item-actions" style="margin-top:1rem;">
         <div class="list-item-action-button">
             <a href="#" class="list-item-action-button-link one" title="check-item"><i class="fa-solid fa-check"></i></a>
         </div>
@@ -13,4 +10,50 @@
             <a href="#" class="list-item-action-button-link three " title="delete-item"><i class="fa-solid fa-trash"></i></a>
         </div>
     </div>
-</div>
+    <div class="detail list-item border">
+        <div class="detail list-item-content">
+            {% if task.checked %}
+            <p class="detail list-item-text">Status: <span>Done</span></p>
+            {% else %}
+            <p class="detail list-item-text">Status: <span>Not done</span></p>
+            {% endif %}
+        </div>
+    </div>
+    <div class="detail list-item border">
+        <div class="detail list-item-content">
+            <p class="detail list-item-text">Name: <span>{{ task.title }} </span></p>
+        </div>
+    </div>
+    <div class="detail list-item border">
+        <div class="detail list-item-content">
+            <p class="detail list-item-text">Description: <span>{{ task.description }} </span></p>
+        </div>
+    </div>
+    <div class="detail list-item border">
+        <div class="detail list-item-content">
+            <p class="detail list-item-text time">Deadline: <span>{{ task.deadline }} </span></p>
+        </div>
+    </div>
+    <div class="detail list-item border">
+        <div class="detail list-item-content">
+            <p class="detail list-item-text time">Author: <span>{{ task.author.username }} </span></p>
+        </div>
+    </div>
+{% else %}
+    <div class="list-item border">
+        <div class="list-item-content">
+            <p class="list-item-text">{{ task.title }}</p>
+        </div>
+        <div class="list-item-actions">
+            <div class="list-item-action-button">
+                <a href="#" class="list-item-action-button-link one" title="check-item"><i class="fa-solid fa-check"></i></a>
+            </div>
+            <div class="list-item-action-button">
+                <a href="#" class="list-item-action-button-link two" title="details"><i class="fa-solid fa-info"></i></a>
+            </div>
+            <div class="list-item-action-button">
+                <a href="#" class="list-item-action-button-link three " title="delete-item"><i class="fa-solid fa-trash"></i></a>
+            </div>
+        </div>
+    </div>
+{% endif %}

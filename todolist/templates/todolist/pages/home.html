@@ -1,7 +1,10 @@
 {% extends "global/base.html" %}
 {% block content %}
     <div class="main container">
-        <h1 class="main_menssage">Hi, {{ request.user.username }}.</h1>
+        {% if not is_detail_page %}
+            <h1 class="main_menssage">Hi, {{ request.user.username }}.</h1>
+        {% endif %}
+        
         {% include "todolist/partials/todolist.html" %}
         
     </div>

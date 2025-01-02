@@ -222,14 +222,15 @@ h1,h2,h3,h4,h5,h6{
     align-items: center;
 }
 
-.todolist .list-item .list-item-actions{
+.list-item-actions{
     display: flex;
     justify-content: center;
     align-items: center;
     gap:var(--spacing-gutter-small);
+    z-index: 999;
 }
 
-.todolist .list-item .list-item-actions .list-item-action-button-link{
+.list-item-actions .list-item-action-button-link{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -241,6 +242,7 @@ h1,h2,h3,h4,h5,h6{
     text-decoration: none;
     color: var(--color-white);
     transition: all .2s ease;
+    z-index: 999;
 }
 .list-item-action-button-link.one{
     background: var(--color-success-dark);
@@ -275,6 +277,34 @@ h1,h2,h3,h4,h5,h6{
 .list-item-text:hover::before{
     width: 100%;
 }
+/*Detail*/
+.todolist.detail{
+    max-width: 70rem;
+    width: 100%;
+    max-height: none;
+}
+.todolist .list-item.detail{
+    width: 100%;
+    max-height: none;
+}
+.list-item-text.time.detail{
+    margin-bottom: .5rem;
+}
+.list-item-text.detail{
+    font-size: 2rem;
+    color: rgba(255, 255, 255, 0.682);
+}
+.list-item-text.detail span{
+    font-size: 2rem;
+    margin-left: .3rem;
+    color: var(--color-white);
+}
+
+.list-item-text.detail::before{
+    content: '';
+    display: none;
+}
+
 /*forms*/
  .form{
     background-color: var(--color-primary-dark-header);
@@ -426,6 +456,12 @@ h1,h2,h3,h4,h5,h6{
     .todolist-header-container .container{
         gap: 1rem;
         padding: var(--spacing-gutter-medium) 1rem;
+    }
+    .list-item-text.detail{
+        font-size: 2rem;
+    }
+    .list-item-text.detail span{
+        font-size: 1.8rem;
     }
 }
 @media screen and (max-width: 300px){
