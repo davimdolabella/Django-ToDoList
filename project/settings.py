@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 from django.contrib.messages import constants
-
+import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'todolist',
     'users',
+    'haystack',
 ]
 
 MIDDLEWARE = [
@@ -139,4 +140,12 @@ MESSAGE_TAGS = {
     constants.INFO: 'message-info',
     constants.SUCCESS: 'message-success',
     constants.WARNING: 'message-warning',
+}
+
+# search
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
+        'PATH': os.path.join(BASE_DIR, 'whoosh_index'),  
+    },
 }

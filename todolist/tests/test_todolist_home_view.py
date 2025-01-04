@@ -27,4 +27,4 @@ class HomeTest(TestCase):
         User.objects.create_user(username='test_user_no_task', password='Tset1234')
         self.client.login(username='test_user_no_task', password='Tset1234')
         response = self.client.get(self.url)
-        self.assertIn('Create a task', response.content.decode())
+        self.assertIn('No task found here 😥.', response.content.decode())

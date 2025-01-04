@@ -42,14 +42,20 @@
 {% else %}
     <div class="list-item border">
         <div class="list-item-content">
-            <p class="list-item-text">{{ task.title }}</p>
+            <p class="list-item-text">
+                {% if task.title %}
+                    {{ task.title }}
+                {% else %}
+                    {{ task.object.title }}
+                {% endif %}
+            </p>
         </div>
         <div class="list-item-actions">
             <div class="list-item-action-button">
                 <a href="#" class="list-item-action-button-link one" title="check-item"><i class="fa-solid fa-check"></i></a>
             </div>
             <div class="list-item-action-button">
-                <a href="{% url 'todolist:detail' task.id %}" class="list-item-action-button-link two" title="details"><i class="fa-solid fa-info"></i></a>
+                <a href="{% url 'todolist:detail' task.pk %}" class="list-item-action-button-link two" title="details"><i class="fa-solid fa-info"></i></a>
             </div>
             <div class="list-item-action-button">
                 <a href="#" class="list-item-action-button-link three " title="delete-item"><i class="fa-solid fa-trash"></i></a>

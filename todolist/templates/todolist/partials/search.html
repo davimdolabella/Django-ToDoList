@@ -1,5 +1,5 @@
 <div class="container">
-    <form action="" method="GET" class="search-form">
+    <form action="{% url 'todolist:search' %}" method="GET" class="search-form">
         <input type="search" class="search-input border" name="q" value="{{ search_term }}" required>
         <button type="submit" class="search-button border"><i class="fa-solid fa-search "></i></button>
     </form>
