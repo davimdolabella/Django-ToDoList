@@ -1,4 +1,4 @@
-
+{% load static %}
 {% if is_detail_page %}
 <div class="todolist-container">
     <div class="todolist container border detail">
@@ -25,3 +25,4 @@
         </div>
     </div>
 {% endif %}
+<script src="{% static 'global/js/action_buttons.js' %}"></script>

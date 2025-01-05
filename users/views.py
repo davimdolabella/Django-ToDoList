@@ -20,7 +20,8 @@ def login_view(request):
         form_action = reverse('users:login_create')
         return render(request, 'users/pages/login.html',{
             'form': form,
-            'form_action': form_action
+            'form_action': form_action,
+            'is_login_page': True,
         })
 
 def login_create(request):

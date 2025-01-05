@@ -26,8 +26,9 @@ def search(request):
     if search_term:
         tasks = SearchQuerySet().filter(content=search_term)
     else:
-        raise Http404
+        return redirect('todolist:home')
     return render(request, 'todolist/pages/home.html', {
         'tasks':tasks,
         'search_term':search_term,
+        'is_search_page':True,
     })

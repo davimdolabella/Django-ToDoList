@@ -12,6 +12,8 @@
             {% csrf_token %}
             {% if is_detail_page %}
                 <a class="house-button button" title="home" href="{% url 'todolist:home' %}"><i class="fa-solid fa-house"></i></a>
+            {% elif is_search_page %}
+                <a class="house-button button" title="home" href="{% url 'todolist:home' %}"><i class="fa-solid fa-house"></i></a>
             {% endif %}
             <button type="submit" class="logout-button button" title="logout"><i class="fa-solid fa-right-from-bracket"></i></button>
         </form>

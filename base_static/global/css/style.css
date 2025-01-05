@@ -176,6 +176,9 @@ h1,h2,h3,h4,h5,h6{
 .search-form:focus-within .search-input{
     background: var(--search-focus-color);
 }
+.search-form.focus .search-input{
+    background: var(--search-focus-color) !important;
+}
 /*main*/
 .main{
     display: flex;
@@ -272,16 +275,33 @@ h1,h2,h3,h4,h5,h6{
 .list-item-action-button-link:hover{
     transform: scale(1.1);
 }
+.list-item-content{
+    max-width: 70%;
+    overflow-x: auto;
+}
+.list-item-content::-webkit-scrollbar{
+    background-color: var(--color-primary-dark-header);
+    height: .8rem;
+    
+}
+.list-item-content::-webkit-scrollbar-thumb{
+    background-color: var(--color-white);
+    border: 3px solid var(--color-primary-dark);
+    width: 1rem;
+}
 .list-item-text{
-    font-size: 2.3rem;
+    font-size: 2rem;
     position: relative;
     padding: 0 .5rem;
+    
 }
-
+.checked .list-item-text::before{
+    width: 100%;
+}
 .list-item-text::before{
     content: '';
     position: absolute;
-    width: 0;
+    width: var(--before-width, 0);
     height: 2.5px;
     background: var(--color-white);
     top: 50%;
@@ -289,18 +309,35 @@ h1,h2,h3,h4,h5,h6{
     transform: translateY(-50%);
     transition: all 1s ease;
 }
-.list-item-text:hover::before{
-    width: 100%;
-}
+
 /*Detail*/
 .todolist.detail{
     max-width: 70rem;
     width: 100%;
     max-height: none;
 }
+.todolist.detail h2{
+    overflow-x: auto;
+    max-width: 80%;
+    text-align: center;
+}
+.todolist.detail h2::-webkit-scrollbar{
+    background-color: var(--color-primary-dark-header);
+    height: .8rem;
+    
+}
+.todolist.detail h2::-webkit-scrollbar-thumb{
+    background-color: var(--color-white);
+    border: 3px solid var(--color-primary-dark);
+    width: 1rem;
+}
 .todolist .list-item.detail{
     width: 100%;
     max-height: none;
+}
+.list-item-content.detail{
+    max-width: none;
+    overflow-x: none;
 }
 .list-item-text.time.detail{
     margin-bottom: .5rem;
@@ -308,6 +345,7 @@ h1,h2,h3,h4,h5,h6{
 .list-item-text.detail{
     font-size: 2rem;
     color: rgba(255, 255, 255, 0.682);
+    
 }
 .list-item-text.detail span{
     font-size: 2rem;
@@ -374,6 +412,15 @@ h1,h2,h3,h4,h5,h6{
   }
   .form-content button:hover{
     transform: scale(1.01);
+  }
+  /*login*/
+  .new-user-msg{
+    color: var(--color-white);
+    text-align: center;
+    
+  }
+  .new-user-msg a{
+    color: var(--color-gray-3);
   }
  /* Messages */
 .messages-container {
@@ -478,6 +525,21 @@ h1,h2,h3,h4,h5,h6{
     .list-item-text.detail span{
         font-size: 1.8rem;
     }
+    .form-content-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(50%, 1fr));
+        gap: calc(var(--spacing-gutter-medium) / 2) var(--spacing-gutter-medium);
+    }
+    .form{
+        background-color: var(--color-primary-dark-header);
+        padding: var(--spacing-gutter-large) 2rem ;
+    }
+    .form-container{
+        padding:var(--spacing-gutter-large) 0;
+    }
+    .no-user{
+        font-size: 2rem;
+    }
 }
 @media screen and (max-width: 300px){
     .todolist .list-item .list-item-actions{
@@ -507,6 +569,12 @@ h1,h2,h3,h4,h5,h6{
     }
     .list-item-text{
         font-size: 1.4rem;
+    }
+    .no-user{
+        font-size: 1.4rem;
+    }
+    .new-user-msg{
+        font-size: 1.3rem;
     }
 }
 
