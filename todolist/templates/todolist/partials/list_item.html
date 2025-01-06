@@ -2,10 +2,10 @@
 {% if is_detail_page %}
     <div class="list-item-actions" style="margin-top:1rem;">
         <div class="list-item-action-button">
-            <a href="#" class="list-item-action-button-link two" title="edit-item"><i class="fa-solid fa-pencil"></i></a>
+            <a href="#" class="list-item-action-button two" title="edit-item"><i class="fa-solid fa-pencil"></i></a>
         </div>
-        <div class="list-item-action-button">
-            <a href="#" class="list-item-action-button-link three " title="delete-item"><i class="fa-solid fa-trash"></i></a>
+        <div class="list-item-action-button" >
+            <button class="list-item-action-button three " title="delete-item"><i class="fa-solid fa-trash"></i></button>
         </div>
     </div>
     
@@ -68,13 +68,13 @@
         </div>
         <div class="list-item-actions">
             <div class="list-item-action-button">
-                <a href="#" class="list-item-action-button-link one" title="check-item"><i class="fa-solid fa-check"></i></a>
+                <button class="list-item-action-button one" title="check-item" task-id="{{ task.pk }}" csrf-token="{{ csrf_token }}"><i class="fa-solid fa-check"></i></button>
             </div>
             <div class="list-item-action-button">
-                <a href="{% url 'todolist:detail' task.pk %}" class="list-item-action-button-link two" title="details"><i class="fa-solid fa-info"></i></a>
+                <a href="{% url 'todolist:detail' task.pk %}" class="list-item-action-button two" title="details"><i class="fa-solid fa-info"></i></a>
             </div>
-            <div class="list-item-action-button">
-                <a href="#" class="list-item-action-button-link three " title="delete-item"><i class="fa-solid fa-trash"></i></a>
+            <div class="list-item-action-button" >
+                <button class="list-item-action-button three " title="delete-item"><i class="fa-solid fa-trash"></i></button>
             </div>
         </div>
     </div>

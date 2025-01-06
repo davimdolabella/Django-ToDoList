@@ -256,7 +256,7 @@ h1,h2,h3,h4,h5,h6{
     z-index: 999;
 }
 
-.list-item-actions .list-item-action-button-link{
+.list-item-actions .list-item-action-button{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -270,17 +270,17 @@ h1,h2,h3,h4,h5,h6{
     transition: all .2s ease;
     z-index: 999;
 }
-.list-item-action-button-link.one{
+.list-item-action-button.one{
     background: var(--color-success-dark);
 }
-.list-item-action-button-link.two{
+.list-item-action-button.two{
     background: var(--color-warning-dark);
 }
 
-.list-item-action-button-link.three{
+.list-item-action-button.three{
     background: var(--color-error-dark);
 }
-.list-item-action-button-link:hover{
+.list-item-action-button:hover{
     transform: scale(1.1);
 }
 .list-item-content{
@@ -435,8 +435,7 @@ h1,h2,h3,h4,h5,h6{
     display: flex;
     flex-flow: column nowrap;
     gap: calc(var(--spacing-gutter-medium) / 2);
-    max-width: 30rem;
-    width: 100%;
+    width: fit-content;
     position: fixed;
     top: 80px;
     right: 0;
@@ -491,7 +490,7 @@ h1,h2,h3,h4,h5,h6{
     color: rgba(0, 0, 0, 0.296);
     background: rgba(211, 211, 211, 0.493);
     border: 2px solid rgba(103, 103, 103, 0.49);
-    
+    margin-left: 1.5rem;
     width: 4rem;
     height: 4rem;
   }
@@ -505,7 +504,7 @@ h1,h2,h3,h4,h5,h6{
     .todolist .list-item .list-item-actions{
         gap:.8rem;
     }
-    .todolist .list-item .list-item-actions .list-item-action-button-link{
+    .todolist .list-item .list-item-actions .list-item-action-button{
         width: 2.5rem;
         height: 2.5rem;
         font-size: 1.3rem;
@@ -553,7 +552,7 @@ h1,h2,h3,h4,h5,h6{
     .todolist .list-item .list-item-actions{
         gap:.4rem;
     }
-    .todolist .list-item .list-item-actions .list-item-action-button-link{
+    .todolist .list-item .list-item-actions .list-item-action-button{
         width: 2rem;
         height: 2rem;
         font-size: 1rem;

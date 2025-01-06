@@ -11,7 +11,6 @@ class Task(models.Model):
     deadline = models.DateField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at=models.DateTimeField(auto_now=True)
-    slug = models.SlugField(max_length=20, unique=True)
     author = models.ForeignKey(
         User, on_delete=models.SET_NULL, null=True
     )

@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure--g5c&c52q7tlut!ufgp4-c3r==vonh2mhl6*yb2++fz_sc1+2j
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'c45a-177-47-168-165.ngrok-free.app',
+    'e26a-177-47-168-165.ngrok-free.app',
     '127.0.0.1',
 ]
 
@@ -45,7 +45,10 @@ INSTALLED_APPS = [
     'users',
     'haystack',
 ]
-
+CSRF_TRUSTED_ORIGINS = [
+    'https://e26a-177-47-168-165.ngrok-free.app',
+    'http://127.0.0.1:8000',
+]
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -110,7 +113,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
-LANGUAGE_CODE = 'pt-br'
+LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'America/Sao_Paulo'
 

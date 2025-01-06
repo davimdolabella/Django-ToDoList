@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Task
 from django.contrib.auth.decorators import login_required
-from django.http import Http404
+from django.http import Http404, JsonResponse
 from haystack.query import SearchQuerySet
+from django.contrib import messages
 
 @login_required(login_url='users:login', redirect_field_name='next')
 def home(request):
@@ -34,3 +35,13 @@ def search(request):
         'search_term':search_term,
         'is_search_page':True,
     })
+
+@login_required(login_url='users:login', redirect_field_name='next')
+def check_item_view(request, task_id):
+    if request.method == 'POST':
+        task = get_object_or_404(Task, pk=task_id, author=request.user)
+        task.checked = not task.checked
+        task.save()
+        return JsonResponse({'is_checked': task.checked})
+        
+    return JsonResponse({'error': 'Invalid request method'}, status=400)
