@@ -15,6 +15,6 @@ class Task(models.Model):
     author = models.ForeignKey(
         User, on_delete=models.SET_NULL, null=True
     )
-
+    @property
     def is_past_deadline(self):
         return datetime.date.today() > self.deadline

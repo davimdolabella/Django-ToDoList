@@ -24,9 +24,11 @@ def detail(request, task_id):
 def search(request):
     search_term = request.GET.get('q', '').strip()
     if search_term:
-        tasks = SearchQuerySet().filter(content=search_term)
+        search_tasks = SearchQuerySet().filter(content=search_term)
     else:
         return redirect('todolist:home')
+    tasks = [task.object for task in search_tasks]
+    
     return render(request, 'todolist/pages/home.html', {
         'tasks':tasks,
         'search_term':search_term,

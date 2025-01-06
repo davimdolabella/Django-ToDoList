@@ -20,7 +20,7 @@
     </div>
     <div class="detail list-item border">
         <div class="detail list-item-content">
-            {% if task.is_past_deadline %}
+            {% if task.is_past_deadline%}
             <p class="detail list-item-text">Deadline Status: <span>Past</span></p>
             {% else %}
             <p class="detail list-item-text">Deadline Status: <span>Not past</span></p>
@@ -49,19 +49,18 @@
     </div>
 {% else %}
     {% if task.is_past_deadline %}
-    {% if task.checked %}
-    <div class="list-item border checked is-past-deadline">
+        {% if task.checked %}
+        <div class="list-item border checked is-past-deadline">
+        {% else %}
+        <div class="list-item border is-past-deadline">
+        {% endif %}
     {% else %}
-    <div class="list-item border is-past-deadline">
+        {% if task.checked %}
+        <div class="list-item border checked">
+        {% else %}
+        <div class="list-item border">
+        {% endif %}
     {% endif %}
-    {% else %}
-    {% if task.checked %}
-    <div class="list-item border checked">
-    {% else %}
-    <div class="list-item border">
-    {% endif %}
-    {% endif %}
-    
         <div class="list-item-content">
             <p class="list-item-text">
                 {{ task.title }}
