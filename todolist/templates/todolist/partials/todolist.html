@@ -1,7 +1,11 @@
 {% load static %}
 {% if is_detail_page %}
 <div class="todolist-container">
+    {% if task.is_past_deadline %}
+    <div class="todolist container border detail is-past-deadline">
+    {% else %}
     <div class="todolist container border detail">
+    {% endif %}
         <h2>{{task.title}}</h2>
         <div class="list-itens detail">
             {% include "todolist/partials/list_item.html" %}

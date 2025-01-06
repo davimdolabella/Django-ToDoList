@@ -3,6 +3,8 @@
     --color-primary-hover: #2086c2;
     --color-primary-dark: #13141f;
     --color-primary-dark-header:#1b1f4b;
+    --color-is-past-deadline-dark:#331414;
+    --color-is-past-deadline:#3a1515;
     --color-primary-dark-hover: #212336;
     --color-primary-light: #d4ecfa;
     --color-primary-light-hover: #bdd8e7;
@@ -193,6 +195,12 @@ h1,h2,h3,h4,h5,h6{
     font-size: 2.4rem;
 }
 /*todolist*/
+.is-past-deadline{
+    background: var(--color-is-past-deadline-dark) !important;
+}
+.detail.is-past-deadline{
+    background: var(--color-is-past-deadline) !important;
+}
 .todolist{
     max-width: 70rem;
     width: 100%;

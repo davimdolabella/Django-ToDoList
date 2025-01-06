@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+import datetime
 
 class Task(models.Model):
     def __str__(self):
@@ -14,3 +15,6 @@ class Task(models.Model):
     author = models.ForeignKey(
         User, on_delete=models.SET_NULL, null=True
     )
+
+    def is_past_deadline(self):
+        return datetime.date.today() > self.deadline
