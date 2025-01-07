@@ -16,8 +16,8 @@ class RegisterForm(forms.ModelForm):
         label='Username',
         error_messages={
             'required':'Write your username',
-            'min_length':'Username musr have at least 4 characters',
-            'max_length':'Username musr have less than 100 characters',
+            'min_length':'Username must have at least 4 characters',
+            'max_length':'Username must have less than 100 characters',
         },
         help_text='Username must have letters, numbers or one of those @.+-_. ',
         min_length=4, max_length=100

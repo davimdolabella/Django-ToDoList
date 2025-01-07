@@ -428,6 +428,51 @@ h1,h2,h3,h4,h5,h6{
     padding-top:.5rem ;
     padding-bottom: .5rem;
   }
+  textarea{
+    resize: none;
+    border-radius: 5px;
+    padding: .5rem;
+    width: 100%;
+    background: var(--search-focus-color);
+  }
+  .task .form-group{
+    grid-column: span 2;
+    grid-row: span 2;
+  }
+  input[type="date"]::-webkit-calendar-picker-indicator{
+    background-color: var(--search-focus-color);
+    font-size: 2rem;
+    margin: 0;
+    cursor: pointer;
+    width: 4rem;
+    pointer-events: all;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    transition: all ease .1s ;
+  }
+  input[type="date"]::-webkit-calendar-picker-indicator:hover{
+    transform: scale(1.01);
+  }
+  input[type="date"]::-webkit-calendar-picker{
+    position: fixed;
+    top: 0;
+    left: 0;
+  }
+  input[type="date"]{
+    padding: 0;
+    max-width: 15rem;
+    padding-left: 1rem;
+    overflow: hidden;
+    pointer-events: none;
+    color: var(--color-white);
+    background: var(--color-primary-dark);
+  }
+  .deadline input[type="date"]{
+    background-color: var(--color-is-past-deadline);
+  }
   /*login*/
   .new-user-msg{
     color: var(--color-white);
@@ -553,6 +598,12 @@ h1,h2,h3,h4,h5,h6{
     }
     .no-user{
         font-size: 2rem;
+    }
+    .main .main_menssage{
+        font-size: 1.8rem;
+    }
+    .main{
+        padding-bottom:0 ;
     }
 }
 @media screen and (max-width: 300px){

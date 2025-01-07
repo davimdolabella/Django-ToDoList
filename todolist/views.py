@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.urls import reverse 
 from .models import Task
 from django.contrib.auth.decorators import login_required
+from .forms import TaskForm
 from django.http import Http404, JsonResponse
 from haystack.query import SearchQuerySet
 from django.contrib import messages
@@ -47,8 +49,31 @@ def check_item_view(request, task_id):
     return JsonResponse({'error': 'Invalid request method'}, status=400)
 
 @login_required(login_url='users:login', redirect_field_name='next')
-def register_task(request):
-    return ('users:login')
+def register_task_view(request):
+    task_form_data = request.session.get('task_form_data', None)
+    form = TaskForm(task_form_data)
+    form_action = reverse('todolist:register_task_create')
+    return render(request, 'todolist/pages/register_task.html',{
+        'form':form,
+        'form_action':form_action,
+        'is_task_form':True,
+    })
+
 @login_required(login_url='users:login', redirect_field_name='next')
 def register_task_create(request):
-    return ('users:login')
+    return render(request, 'todolist/pages/register_task.html')
+@login_required(login_url='users:login', redirect_field_name='next')
+def edit_task_view(request, task_id):
+    task = Task.objects.get(pk=task_id)  
+    form = TaskForm(instance=task)
+    form_action = reverse('todolist:edit_task_create')
+    return render(request, 'todolist/pages/edit_task.html',{
+        'form':form,
+        'form_action':form_action,
+        'is_task_form':True,
+        'task':task,
+    })
+
+@login_required(login_url='users:login', redirect_field_name='next')
+def edit_task_create(request):
+    return render(request, 'todolist/pages/edit_task.html')

@@ -2,7 +2,7 @@
 {% if is_detail_page %}
     <div class="list-item-actions" style="margin-top:1rem;">
         <div class="list-item-action-button">
-            <a href="#" class="list-item-action-button two" title="edit-item"><i class="fa-solid fa-pencil"></i></a>
+            <a href="{% url 'todolist:edit_task' task.pk %}" class="list-item-action-button two" title="edit-item"><i class="fa-solid fa-pencil"></i></a>
         </div>
         <div class="list-item-action-button" >
             <button class="list-item-action-button three " title="delete-item"><i class="fa-solid fa-trash"></i></button>
