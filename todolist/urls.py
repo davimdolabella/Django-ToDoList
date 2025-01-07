@@ -7,4 +7,6 @@ urlpatterns = [
      path('detail/<int:task_id>/', views.detail, name='detail'),
      path('todolist/search/', views.search, name="search"),
      path('todolist/check/<int:task_id>/', views.check_item_view, name="check_item"),
+     path('todolist/register/task/', views.register_task_view, name="register_task"),
+     path('todolist/register/task/create', views.register_task_create, name="register_task_create"),
 ]

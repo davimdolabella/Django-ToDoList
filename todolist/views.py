@@ -45,3 +45,10 @@ def check_item_view(request, task_id):
         return JsonResponse({'is_checked': task.checked})
         
     return JsonResponse({'error': 'Invalid request method'}, status=400)
+
+@login_required(login_url='users:login', redirect_field_name='next')
+def register_task(request):
+    return ('users:login')
+@login_required(login_url='users:login', redirect_field_name='next')
+def register_task_create(request):
+    return ('users:login')
