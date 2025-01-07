@@ -3,14 +3,39 @@ from django.urls import reverse
 from django.http import Http404
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
-from .forms import LoginForm
+from .forms import LoginForm, RegisterForm
 from django.contrib.auth.decorators import login_required
 
 def register_view(request):
-    return render(request, 'users/pages/home.html')
+    if request.user.is_authenticated:
+        return redirect('todolist:home')
+    else:
+        register_form_data = request.session.get('register_form_data', None)
+        form = RegisterForm(register_form_data)
+        form_action = reverse('users:register_create')
+        request.session.pop('register_form_data', None)
+        return render(request, 'users/pages/register_user.html',{
+            'form': form, 
+            'form_action':form_action,
+            'is_register_page':True,
+        })
+    
 
 def register_create(request):
-    return render(request, 'users/pages/home.html')
+    if not  request.POST:
+        raise Http404
+    POST = request.POST
+    request.session['register_form_data'] = POST
+    form = RegisterForm(request.POST)
+    if form.is_valid():
+        user = form.save(commit=False)
+        user.set_password(user.password)
+        user.save()
+        
+        messages.success(request, 'User registered successfully!')
+        del(request.session['register_form_data'])
+        return redirect('users:login')
+    return redirect('users:register')
 
 def login_view(request):
     if request.user.is_authenticated:

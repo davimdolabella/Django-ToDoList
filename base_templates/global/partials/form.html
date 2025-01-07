@@ -6,11 +6,12 @@
                 <div class="form-group">
                     <label for="{{ field.id_for_label }}">{{ field.label }}</label>
                     {{ field }}
-                    {% if field.help_text %}
-                        <p class="help-text">{{field.help_text}}</p>
-                    {% endif %}
                     {% for error in field.errors %}
-                        <p class="message message-error">{{ error }}</p>
+                        <p class="message message-error form-error">{{ error }}</p>
+                    {% empty %}
+                        {% if field.help_text %}
+                            <p class="help-text">{{field.help_text}}</p>
+                        {% endif %}
                     {% endfor %}
                 </div>
             {% endfor %}

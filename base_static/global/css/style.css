@@ -387,7 +387,7 @@ h1,h2,h3,h4,h5,h6{
     margin: 0.5rem 0;
     font-size: 1.4rem;
     list-style-type: none;
-    color: var(--color-gray-2);
+    color: var(--color-gray-0);
   }
   .errorlist {
     color: var(--color-error-dark);
@@ -420,6 +420,13 @@ h1,h2,h3,h4,h5,h6{
   }
   .form-content button:hover{
     transform: scale(1.01);
+  }
+  .form-content p.help-text{
+    color: var(--color-gray-3);
+  }
+  .message.form-error{
+    padding-top:.5rem ;
+    padding-bottom: .5rem;
   }
   /*login*/
   .new-user-msg{
