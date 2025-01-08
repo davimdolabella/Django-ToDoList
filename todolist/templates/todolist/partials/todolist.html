@@ -20,14 +20,18 @@
         <div class="todolist container border">
             <h2>ToDoList</h2>
             <div class="list-itens">
-                {% for task in tasks %}
-                    {% include "todolist/partials/list_item.html" %}
-                {% empty %}
+                {% if tasks %}
+                    {% for task in tasks %}
+                        {% include "todolist/partials/list_item.html" %}
+                    {% endfor %}
+
+                {% else %}
                     <p>
                         No task found here 😥, <br>
-                       <span> "You can try a new seach or create a new task".</span>
+                    <span> "You can try a new seach or create a new task".</span>
                     </p>
-                {% endfor %}
+                {% endif %}
+                
             </div>
         </div>
     </div>

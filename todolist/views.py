@@ -26,14 +26,22 @@ def detail(request, task_id):
 @login_required(login_url='users:login', redirect_field_name='next')
 def search(request):
     search_term = request.GET.get('q', '').strip()
+    tasks = []
+    this_author_tasks = []
     if search_term:
         search_tasks = SearchQuerySet().filter(content=search_term)
+        if search_tasks:
+            tasks = [task.object for task in search_tasks]
+            this_author_tasks = []
+            for task in tasks:
+                if task and task.author and task.author == request.user:  # Verifica se `task.author` existe
+                    this_author_tasks.append(task)
     else:
         return redirect('todolist:home')
-    tasks = [task.object for task in search_tasks]
-    
+
+
     return render(request, 'todolist/pages/home.html', {
-        'tasks':tasks,
+        'tasks':this_author_tasks,
         'search_term':search_term,
         'is_search_page':True,
     })
