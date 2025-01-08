@@ -1,0 +1,9 @@
+[run]
+source = .
+
+[report]
+omit =
+    utils/django_forms.py,
+    manage.py,
+    project/asgi.py,
+    project/wsgi.py

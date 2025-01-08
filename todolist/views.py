@@ -50,12 +50,12 @@ def check_item_view(request, task_id):
 
 @login_required(login_url='users:login', redirect_field_name='next')
 def delete_item_view(request, task_id):
-    if not request.POST:
-        raise Http404
-    task = get_object_or_404(Task, pk=task_id, author=request.user)
-    messages.success(request, f"Task '{task.title}' deleted successfully!")
-    task.delete()
-    return redirect('todolist:home')
+    if request.method == 'POST':
+        task = get_object_or_404(Task, pk=task_id, author=request.user)
+        messages.success(request, f"Task '{task.title}' deleted successfully!")
+        task.delete()
+        return redirect('todolist:home')
+    raise Http404
 
 @login_required(login_url='users:login', redirect_field_name='next')
 def register_task_view(request):
@@ -71,21 +71,21 @@ def register_task_view(request):
 
 @login_required(login_url='users:login', redirect_field_name='next')
 def register_task_create(request):
-    if not request.POST:
-        raise Http404
-    POST = request.POST
-    request.session['task_form_data'] = POST
-    form = TaskForm(request.POST)
-    if form.is_valid():
-        user = request.user
-        task = form.save(commit=False)
-        task.author = user
-        print(task.title)
-        task.save()
-        messages.success(request, f"Task '{task.title}' created successfully!")
-        del(request.session['task_form_data'])
-        return redirect('todolist:home')
-    return redirect('todolist:register_task')
+    if request.method == 'POST':
+        POST = request.POST
+        request.session['task_form_data'] = POST
+        form = TaskForm(request.POST)
+        if form.is_valid():
+            user = request.user
+            task = form.save(commit=False)
+            task.author = user
+            task.save()
+            messages.success(request, f"Task '{task.title}' created successfully!")
+            del(request.session['task_form_data'])
+            return redirect('todolist:home')
+        return redirect('todolist:register_task')
+    raise Http404
+    
 
 @login_required(login_url='users:login', redirect_field_name='next')
 def edit_task_view(request, task_id):
@@ -103,16 +103,16 @@ def edit_task_view(request, task_id):
 
 @login_required(login_url='users:login', redirect_field_name='next')
 def edit_task_create(request, task_id):
-    if not request.POST:
-        raise Http404
-    POST = request.POST
-    request.session['task_edit_form_data'] = POST
-    task = Task.objects.get(pk=task_id, author=request.user)
-    form = TaskForm(request.POST, instance=task)
-    if form.is_valid():
-        updated_task = form.save()
-        print(updated_task.title)
-        messages.success(request, f"Task '{updated_task.title}' edited successfully!")
-        del(request.session['task_edit_form_data'])
-        return redirect('todolist:home')
-    return redirect('todolist:edit_task', task_id=task_id)
+    if request.method == 'POST':
+        POST = request.POST
+        request.session['task_edit_form_data'] = POST
+        task = Task.objects.get(pk=task_id, author=request.user)
+        form = TaskForm(request.POST, instance=task)
+        if form.is_valid():
+            updated_task = form.save()
+            print(updated_task.title)
+            messages.success(request, f"Task '{updated_task.title}' edited successfully!")
+            del(request.session['task_edit_form_data'])
+            return redirect('todolist:home')
+        return redirect('todolist:edit_task', task_id=task_id)
+    raise Http404

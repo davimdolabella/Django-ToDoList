@@ -22,20 +22,20 @@ def register_view(request):
     
 
 def register_create(request):
-    if not  request.POST:
-        raise Http404
-    POST = request.POST
-    request.session['register_form_data'] = POST
-    form = RegisterForm(request.POST)
-    if form.is_valid():
-        user = form.save(commit=False)
-        user.set_password(user.password)
-        user.save()
-        
-        messages.success(request, 'User registered successfully!')
-        del(request.session['register_form_data'])
-        return redirect('users:login')
-    return redirect('users:register')
+    if request.method == 'POST':
+        POST = request.POST
+        request.session['register_form_data'] = POST
+        form = RegisterForm(request.POST)
+        if form.is_valid():
+            user = form.save(commit=False)
+            user.set_password(user.password)
+            user.save()
+            
+            messages.success(request, 'User registered successfully!')
+            del(request.session['register_form_data'])
+            return redirect('users:login')
+        return redirect('users:register')
+    raise Http404
 
 def login_view(request):
     if request.user.is_authenticated:
@@ -50,32 +50,33 @@ def login_view(request):
         })
 
 def login_create(request):
-    if not request.POST:
-        raise Http404()
-    form = LoginForm(request.POST)
+    if request.method == 'POST':
+            
+        form = LoginForm(request.POST)
 
-    if form.is_valid():
-        authenticated_user = authenticate(
-            username=form.cleaned_data.get('username', ''),
-            password=form.cleaned_data.get('password', '')
-        )
+        if form.is_valid():
+            authenticated_user = authenticate(
+                username=form.cleaned_data.get('username', ''),
+                password=form.cleaned_data.get('password', '')
+            )
 
-        if authenticated_user is not None:
-            messages.success(request, 'You are logged in!')
-            login(request, authenticated_user)
+            if authenticated_user is not None:
+                messages.success(request, 'You are logged in!')
+                login(request, authenticated_user)
+            else:
+                messages.error(request, 'Invalid credentials')
+            
+
         else:
-            messages.error(request, 'Invalid credentials')
-        
-
-    else:
-        messages.error(request, 'Invalid username or password')
-    return redirect('users:login')
+            messages.error(request, 'Invalid username or password')
+        return redirect('users:login')
+    raise Http404()
     
 
 @login_required(login_url='users:login', redirect_field_name='next')
 def logout_view(request):
-    if not request.POST:
+    if request.method == 'POST':
+        logout(request)
+        messages.success(request, 'You are logged out!') 
         return redirect(reverse('users:login'))
-    logout(request)
-    messages.success(request, 'You are logged out!') 
-    return redirect(reverse('users:login'))
+    return redirect(reverse('todolist:home'))
