@@ -23,7 +23,10 @@
                 {% for task in tasks %}
                     {% include "todolist/partials/list_item.html" %}
                 {% empty %}
-                    <p>No task found here 😥.</p>
+                    <p>
+                        No task found here 😥, <br>
+                       <span> "You can try a new seach or create a new task".</span>
+                    </p>
                 {% endfor %}
             </div>
         </div>

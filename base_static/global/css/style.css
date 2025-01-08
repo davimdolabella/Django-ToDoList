@@ -301,6 +301,8 @@ h1,h2,h3,h4,h5,h6{
     font-size: 2rem;
     position: relative;
     padding: 0 .5rem;
+    overflow-x: auto;
+    word-wrap: none;
     
 }
 .checked .list-item-text::before{
@@ -364,6 +366,14 @@ h1,h2,h3,h4,h5,h6{
 .list-item-text.detail::before{
     content: '';
     display: none;
+}
+.list-itens > p{
+    height: 100%;
+    max-height: 30rem;
+    text-align: center;
+}
+.list-itens > p span{
+    color: var(--color-gray-4);
 }
 
 /*forms*/
@@ -605,8 +615,11 @@ h1,h2,h3,h4,h5,h6{
     .main{
         padding-bottom:0 ;
     }
+    .todolist{
+        padding-bottom: 2rem;
+    }
 }
-@media screen and (max-width: 300px){
+@media screen and (max-width: 360px){
     .todolist .list-item .list-item-actions{
         gap:.4rem;
     }
@@ -640,6 +653,12 @@ h1,h2,h3,h4,h5,h6{
     }
     .new-user-msg{
         font-size: 1.3rem;
+    }
+    .header form{
+        gap: .5rem;
+    }
+    .list-item{
+        gap:.5rem;
     }
 }
 

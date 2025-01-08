@@ -4,9 +4,10 @@
         <div class="list-item-action-button">
             <a href="{% url 'todolist:edit_task' task.pk %}" class="list-item-action-button two" title="edit-item"><i class="fa-solid fa-pencil"></i></a>
         </div>
-        <div class="list-item-action-button" >
+        <form class="list-item-action-button" action="{% url 'todolist:delete_item' task.pk %}" method="POST">
+            {% csrf_token %}
             <button class="list-item-action-button three " title="delete-item"><i class="fa-solid fa-trash"></i></button>
-        </div>
+        </form>
     </div>
     
     <div class="detail list-item border">
@@ -73,9 +74,10 @@
             <div class="list-item-action-button">
                 <a href="{% url 'todolist:detail' task.pk %}" class="list-item-action-button two" title="details"><i class="fa-solid fa-info"></i></a>
             </div>
-            <div class="list-item-action-button" >
+            <form class="list-item-action-button" action="{% url 'todolist:delete_item' task.pk %}" method="POST">
+                {% csrf_token %}
                 <button class="list-item-action-button three " title="delete-item"><i class="fa-solid fa-trash"></i></button>
-            </div>
+            </form>
         </div>
     </div>
 {% endif %}

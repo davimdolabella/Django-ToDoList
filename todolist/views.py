@@ -49,10 +49,20 @@ def check_item_view(request, task_id):
     return JsonResponse({'error': 'Invalid request method'}, status=400)
 
 @login_required(login_url='users:login', redirect_field_name='next')
+def delete_item_view(request, task_id):
+    if not request.POST:
+        raise Http404
+    task = get_object_or_404(Task, pk=task_id, author=request.user)
+    messages.success(request, f"Task '{task.title}' deleted successfully!")
+    task.delete()
+    return redirect('todolist:home')
+
+@login_required(login_url='users:login', redirect_field_name='next')
 def register_task_view(request):
     task_form_data = request.session.get('task_form_data', None)
     form = TaskForm(task_form_data)
     form_action = reverse('todolist:register_task_create')
+    request.session.pop('task_form_data', None)
     return render(request, 'todolist/pages/register_task.html',{
         'form':form,
         'form_action':form_action,
@@ -61,12 +71,28 @@ def register_task_view(request):
 
 @login_required(login_url='users:login', redirect_field_name='next')
 def register_task_create(request):
-    return render(request, 'todolist/pages/register_task.html')
+    if not request.POST:
+        raise Http404
+    POST = request.POST
+    request.session['task_form_data'] = POST
+    form = TaskForm(request.POST)
+    if form.is_valid():
+        user = request.user
+        task = form.save(commit=False)
+        task.author = user
+        print(task.title)
+        task.save()
+        messages.success(request, f"Task '{task.title}' created successfully!")
+        del(request.session['task_form_data'])
+        return redirect('todolist:home')
+    return redirect('todolist:register_task')
+
 @login_required(login_url='users:login', redirect_field_name='next')
 def edit_task_view(request, task_id):
-    task = Task.objects.get(pk=task_id)  
-    form = TaskForm(instance=task)
-    form_action = reverse('todolist:edit_task_create')
+    task_edit_form_data = request.session.get('task_edit_form_data', None)
+    task = Task.objects.get(pk=task_id, author=request.user)  
+    form = TaskForm(task_edit_form_data, instance=task)
+    form_action = reverse('todolist:edit_task_create', kwargs={'task_id': task_id})
     return render(request, 'todolist/pages/edit_task.html',{
         'form':form,
         'form_action':form_action,
@@ -74,6 +100,19 @@ def edit_task_view(request, task_id):
         'task':task,
     })
 
+
 @login_required(login_url='users:login', redirect_field_name='next')
-def edit_task_create(request):
-    return render(request, 'todolist/pages/edit_task.html')
+def edit_task_create(request, task_id):
+    if not request.POST:
+        raise Http404
+    POST = request.POST
+    request.session['task_edit_form_data'] = POST
+    task = Task.objects.get(pk=task_id, author=request.user)
+    form = TaskForm(request.POST, instance=task)
+    if form.is_valid():
+        updated_task = form.save()
+        print(updated_task.title)
+        messages.success(request, f"Task '{updated_task.title}' edited successfully!")
+        del(request.session['task_edit_form_data'])
+        return redirect('todolist:home')
+    return redirect('todolist:edit_task', task_id=task_id)
